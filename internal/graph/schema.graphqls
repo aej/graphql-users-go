@@ -1,0 +1,48 @@
+type User {
+    id: ID!
+    email: String!
+    createdAt: String!
+    updatedAt: String!
+}
+
+type Query {
+    me: User
+}
+
+input RegisterUserInput {
+    email: String!
+    password: String!
+    fullName: String!
+}
+
+input LoginInput {
+    email: String!
+    password: String!
+}
+
+input ConfirmEmailInput {
+    token: String!
+}
+
+input RequestResetPasswordInput {
+    email: String!
+}
+
+input ValidateResetPasswordTokenInput {
+    token: String!
+}
+
+input ResetPasswordInput {
+    token: String!
+    password: String!
+}
+
+type Mutation {
+    registerUser(input: RegisterUserInput!): User
+    loginUser(input: LoginInput!): User
+    logout: Boolean!
+    confirmEmail(input: ConfirmEmailInput!): Boolean!
+    requestResetPassword(input: RequestResetPasswordInput!): Boolean!
+    validateResetPasswordToken(input: ValidateResetPasswordTokenInput!): User
+    resetPassword(input: ResetPasswordInput!): Boolean!
+}

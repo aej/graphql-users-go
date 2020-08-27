@@ -21,7 +21,9 @@
 ### Go Patch ###
 /vendor/
 /Godeps/
+/tmp
 
 .env
+.idea/
 
 # End of https://www.toptal.com/developers/gitignore/api/go
