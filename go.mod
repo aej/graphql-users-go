@@ -18,6 +18,7 @@ require (
 	github.com/mattes/migrate v3.0.1+incompatible // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.1 // indirect
+	github.com/satori/go.uuid v1.2.0
 	github.com/vektah/gqlparser/v2 v2.0.1
 	golang.org/x/sys v0.0.0-20200826173525-f9321e4c35a6 // indirect
 	golang.org/x/tools v0.0.0-20200725200936-102e7d357031

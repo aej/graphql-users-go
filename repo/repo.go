@@ -1,30 +1,32 @@
 package repo
 
 import (
+	"fmt"
 	"github.com/google/uuid"
 	"github.com/jinzhu/gorm"
 	"time"
 )
 
 type User struct {
-	ID uuid.UUID		  `gorm:"type:uuid;unique_index;default:generate_uuid_v4()"`
-	Email string 		  `gorm:"type:varchar(255);unique_index;not_null"`
-	HashedPassword string `gorm:"type:not_null"`
-	CreatedAt time.Time   `gorm:"type:not_null"`
-	UpdatedAt time.Time	  `gorm:"type:not_null"`
+	ID             uuid.UUID `gorm:"primaryKey;type:uuid;default:uuid_generate_v4()"`
+	Email          string    `gorm:"type:varchar(255);unique_index;not_null"`
+	HashedPassword string    `gorm:"type:not_null"`
+	CreatedAt      time.Time `gorm:"type:not_null"`
+	UpdatedAt      time.Time `gorm:"type:not_null"`
 }
 
 type UserRepo struct {
 	db *gorm.DB
 }
 
-func(r *UserRepo) CreateUser(email string) (User, error) {
+func (r *UserRepo) CreateUser(email string) (User, error) {
 	user := User{Email: email}
-	r.db.Create(user)
+	result := r.db.Create(&user)
+	fmt.Printf("Error is: %s", result.Error)
 	return user, nil
 }
 
-func(r *UserRepo) ListAllUsers() ([]User, error) {
+func (r *UserRepo) ListAllUsers() ([]User, error) {
 	var users []User
 	r.db.Find(&users)
 
