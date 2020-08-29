@@ -13,6 +13,7 @@ require (
 	github.com/graphql-go/graphql v0.7.9
 	github.com/graphql-go/handler v0.2.3
 	github.com/jinzhu/gorm v1.9.16
+	github.com/jmoiron/sqlx v1.2.0
 	github.com/json-iterator/go v1.1.10 // indirect
 	github.com/lib/pq v1.3.0
 	github.com/mattes/migrate v3.0.1+incompatible // indirect
