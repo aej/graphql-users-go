@@ -3,6 +3,7 @@ package api
 import (
 	"github.com/andyjones11/graphql-users/repo"
 	"github.com/andyjones11/graphql-users/services/auth"
+	userservice "github.com/andyjones11/graphql-users/services/user"
 	"github.com/gin-gonic/gin"
 	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"
@@ -12,20 +13,20 @@ type Resolver struct {
 	Repo *repo.Repositories
 }
 
-func (r *Resolver) ListUsersResolver(p graphql.ResolveParams) (interface{}, error) {
+func (r *Resolver) ListUsersResolver() []userservice.User {
 	users, _ := r.Repo.User.ListAllUsers()
-	return users, nil
+	return users
 }
 
-func (r *Resolver) RegisterUserResolver(p graphql.ResolveParams) (interface{}, error) {
+func (r *Resolver) RegisterUserResolver(email string) userservice.User {
 
-	user, err := r.Repo.User.CreateUser(p.Args["email"].(string))
+	user, _ := r.Repo.User.CreateUser(email)
 
-	if err != nil {
-		if err == repo.UserEmailExists {
-			return nil, UserEmailExists
-		}
-	}
+	//if err != nil {
+	//	if err == repo.UserEmailExists {
+	//		return nil, UserEmailExists
+	//	}
+	//}
 
 	_, auth_err := auth.AuthenticateUser(r.Repo, &user)
 
@@ -33,18 +34,8 @@ func (r *Resolver) RegisterUserResolver(p graphql.ResolveParams) (interface{}, e
 		panic("Unable to authenticate user")
 	}
 
-	return user, err
+	return user
 }
-
-//func AuthMiddleware() gin.HandlerFunc {
-//	return func(c *gin.Context) {
-//		c.Next()
-//		auth_cookie := c.Request.Context().Value("auth-cookie")
-//		if auth_cookie != nil {
-//			c.SetCookie("_id", auth_cookie, 3600, "/", "localhost", false, true)
-//		}
-//	}
-//}
 
 func InitializeApi(schema graphql.Schema, defaultPort string) {
 	h := handler.New(&handler.Config{
