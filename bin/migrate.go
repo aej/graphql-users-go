@@ -10,7 +10,7 @@ import (
 	"log"
 )
 
-func Migrate() {
+func Up() {
 	migrations_dir := "file://migrations"
 	database_url := "postgres://postgres:password@localhost:5432/graphql-users?sslmode=disable"
 	log.Printf("Loading migrations from %s", migrations_dir)

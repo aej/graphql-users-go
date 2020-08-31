@@ -9,9 +9,7 @@ require (
 	github.com/golang-migrate/migrate v3.5.4+incompatible // indirect
 	github.com/golang-migrate/migrate/v4 v4.12.2
 	github.com/google/uuid v1.1.1
-	github.com/graph-gophers/graphql-go v0.0.0-20200819123640-3b5ddcd884ae // indirect
-	github.com/graphql-go/graphql v0.7.9
-	github.com/graphql-go/handler v0.2.3
+	github.com/gorilla/securecookie v1.1.1
 	github.com/jinzhu/gorm v1.9.16
 	github.com/jmoiron/sqlx v1.2.0
 	github.com/json-iterator/go v1.1.10 // indirect

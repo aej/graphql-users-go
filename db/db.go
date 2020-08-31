@@ -10,8 +10,6 @@ func Connect() (*gorm.DB, error) {
 	if err != nil {
 		log.Fatalf("Failed to connect to the db. Error: %s", err)
 	}
-
 	log.Print("Database connection established")
-
 	return db, nil
 }
