@@ -1,2 +1,0 @@
-DROP TABLE IF EXISTS users_tokens;
-DROP TABLE IF EXISTS users;
